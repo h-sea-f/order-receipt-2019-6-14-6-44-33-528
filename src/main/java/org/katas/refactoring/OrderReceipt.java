@@ -20,15 +20,8 @@ public class OrderReceipt {
         double totSalesTx = 0d;
         double tot = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            itemsString.append(lineItem.getDescription());
-            itemsString.append('\t');
-            itemsString.append(lineItem.getPrice());
-            itemsString.append('\t');
-            itemsString.append(lineItem.getQuantity());
-            itemsString.append('\t');
-            itemsString.append(lineItem.totalAmount());
-            itemsString.append('\n');
-            double salesTax = lineItem.totalAmount() * .10;
+            itemsString.append(String.format("%s\t%s\t%s\t%s\n",lineItem.getDescription(),lineItem.getPrice(),lineItem.getQuantity(),lineItem.totalAmount()));
+            double salesTax = lineItem.getTax();
             totSalesTx += salesTax;
             tot += lineItem.totalAmount() + salesTax;
         }
